@@ -320,14 +320,27 @@ def check_for_updates(github_repo):
         else:
             current_lua = os.path.expanduser("~/.config/mpv/scripts/watchparty.lua")
             
-        lua_url = f"https://raw.githubusercontent.com/{github_repo}/main/watchparty.lua"
-        py_url = f"https://raw.githubusercontent.com/{github_repo}/main/watchparty-bridge.py"
+        new_lua, new_py = None, None
         
+        for branch in ["main", "master"]:
+            try:
+                lua_url = f"https://raw.githubusercontent.com/{github_repo}/{branch}/watchparty.lua"
+                py_url = f"https://raw.githubusercontent.com/{github_repo}/{branch}/watchparty-bridge.py"
+                
+                with urllib.request.urlopen(lua_url, timeout=5) as r:
+                    new_lua = r.read()
+                with urllib.request.urlopen(py_url, timeout=5) as r:
+                    new_py = r.read()
+                break
+            except:
+                continue
+                
+        if not new_lua or not new_py:
+            return
+            
         updated = False
         
         try:
-            with urllib.request.urlopen(lua_url, timeout=5) as r:
-                new_lua = r.read()
             if os.path.exists(current_lua):
                 with open(current_lua, 'rb') as f:
                     old_lua = f.read()
@@ -341,8 +354,6 @@ def check_for_updates(github_repo):
         except: pass
         
         try:
-            with urllib.request.urlopen(py_url, timeout=5) as r:
-                new_py = r.read()
             with open(current_py, 'rb') as f:
                 old_py = f.read()
             if new_py and new_py != old_py:

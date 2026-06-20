@@ -145,7 +145,7 @@ local function show_overlay()
     if o.role == "host" then
         if state.connected then
             role_icon = "👑 HOST"
-            status_color = "ff5555" -- red
+            status_color = "7bfa50" -- green
         else
             role_icon = "⏳ Starting..."
             status_color = "6cb8ff" -- orange
