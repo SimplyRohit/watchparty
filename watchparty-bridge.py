@@ -320,8 +320,8 @@ def check_for_updates(github_repo):
         else:
             current_lua = os.path.expanduser("~/.config/mpv/scripts/watchparty.lua")
             
-        lua_url = f"https://raw.githubusercontent.com/{github_repo}/main/scripts2/watchparty.lua"
-        py_url = f"https://raw.githubusercontent.com/{github_repo}/main/scripts2/watchparty-bridge.py"
+        lua_url = f"https://raw.githubusercontent.com/{github_repo}/main/watchparty.lua"
+        py_url = f"https://raw.githubusercontent.com/{github_repo}/main/watchparty-bridge.py"
         
         updated = False
         

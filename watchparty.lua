@@ -29,7 +29,7 @@ local o = {
     chat_lines  = 8,             -- how many chat lines to show in OSD
     osd_timeout = 5,             -- seconds OSD stays visible after action
     sync_threshold = 2.0,        -- seconds of drift before force-seek
-    github_repo = "",            -- e.g. "username/watchparty" for auto-updates
+    github_repo = "SimplyRohit/watchparty",            -- e.g. "username/watchparty" for auto-updates
 }
 options.read_options(o, "watchparty")
 
